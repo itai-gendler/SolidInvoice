@@ -1,0 +1,25 @@
+---
+appliesTo:
+- type: entity
+  id: address
+  effect: creates
+permits:
+- related:
+  - {verb: has, entity: client}
+  - {verb: keeps, entity: company}
+  - {verb: belongs-to, entity: user}
+references:
+- kind: code
+  role: implementation
+  target: src/CoreBundle/Doctrine/Filter/CompanyFilter.php
+- kind: code
+  role: implementation
+  target: config/packages/security.php
+- kind: code
+  role: implementation
+  target: src/ClientBundle/Entity/Address.php
+---
+
+# Only users of the owning company add a client's addresses
+
+Every User who belongs to the company that keeps it may; nobody outside that company can see or reach it. There are no roles inside a company.
